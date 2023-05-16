@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake News Detection</title>
+</head>
+<style>
+body {
+    background-image: url("https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+h1 {
+    text-align: center;
+    padding-top: 15rem;
+    font-size: 40px;
+}
+textarea#text {
+    font-size: 20px;
+    padding: 5px;
+}
+textarea {
+    width: 45%;
+    margin: auto;
+    display: block;
+    border-radius: 15px;
+}
+label {
+    margin-left: 565px;
+    font-size: 27px;
+}
+select#model {
+    font-size: 21px;
+}
+input[type="submit"] {
+    display: block;
+    margin: auto;
+    font-size: 25px;
+}
+h2 {
+    margin-left: 610px;
+    font-size: 30px;
+}
+p {
+    margin-left: 654px;
+    font-size: 28px;
+}
+</style>
+<body>
+    <h1>FAKE NEWS DETECTION</h1>
+    <form action="/classify" method="POST">
+        
+        <textarea id="text" name="text" rows="4" cols="50" placeholder="Nhập nội dung tin tức..."></textarea><br><br>
+        
+        <label for="model">Chọn mô hình:</label>
+        <select id="model" name="model">
+            <option value="svm">Support Vector Machine</option>
+            <option value="rnn">Recurrent Neural Network</option>
+        </select><br><br><br>
+        
+        <input type="submit" value="Dự đoán">
+    </form>
+    
+    {% if result %}
+        <h2>Kết quả:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+    
+    {% if svm_acc %}
+        <h2>Đánh giá mô hình SVM: {{ svm_acc }}</h2>
+    {% endif %}
+    
+    {% if rnn_acc %}
+        <h2>Đánh giá mô hình RNN: {{ rnn_acc }}</h2>
+    {% endif %}
+    
+</body>
+</html>
